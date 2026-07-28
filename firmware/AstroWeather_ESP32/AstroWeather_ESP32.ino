@@ -1,5 +1,5 @@
 /*
-  AstroWeather India v1.2
+  AstroWeather India v1.3
   ESP32 + SHT31 + MLX90614 + TSL2591
 
   SPDX-License-Identifier: AGPL-3.0-or-later
@@ -64,8 +64,9 @@ body{font-family:system-ui;background:#07111d;color:#e9f2ff;margin:0;padding:18p
 .card{background:#102238;border:1px solid #244462;border-radius:14px;padding:15px}
 .v{font-size:1.7rem;font-weight:700;margin-top:5px}.ok{color:#63e69b}.bad{color:#ff8178}
 .note{color:#9bb0c8;font-size:.9rem;line-height:1.4}h1{font-size:1.5rem}
+a{color:#79b8ff}.settings{background:#18324e;border-radius:8px;padding:7px 10px;text-decoration:none}
 </style></head><body><div class="wrap">
-<div class="top"><h1>AstroWeather India</h1><span id="safe">Reading…</span></div>
+<div class="top"><h1>AstroWeather India</h1><div><span id="safe">Reading…</span> &nbsp; <a class=settings href="/settings">Settings</a></div></div>
 <div class="grid" id="grid"></div>
 <p class="note">Advisory only: “Clarity” is the calibrated IR cloud score. SQM and Bortle are estimates from the
 TSL2591 and remain unavailable until reference calibration. Never use this alone to control an unattended roof.</p>
@@ -79,7 +80,9 @@ let a=[['Air',f(d.air_c)+' °C'],['Humidity',f(d.humidity)+' %'],
 ['Sky IR',f(d.sky_c)+' °C'],['Cloud delta',f(d.cloud_delta_c)+' °C'],
 ['Cloud estimate',f(d.cloud_percent,0)+' %'],['Clarity',f(d.clarity_score,0)+' / 100'],
 ['SQM estimate',sqm],['Estimated Bortle',bortle],
-['Zenith light',f(d.lux,6)+' lux'],['Rain plate',d.rain_detected?'WET':'dry']];
+['Zenith light',f(d.lux,6)+' lux'],['Rain plate',d.rain_detected?'WET':'dry'],
+['Wi-Fi',d.wifi_connected?(d.wifi_rssi_dbm+' dBm'):'setup AP'],
+['Telegram',d.telegram_enabled?(d.telegram_report_minutes?d.telegram_report_minutes+' min':'alerts only'):'off']];
 document.querySelector('#grid').innerHTML=a.map(x=>`<div class=card>${x[0]}<div class=v>${x[1]}</div></div>`).join('');
 let s=document.querySelector('#safe');s.textContent=d.advisory_safe?'ADVISORY: OK':'ADVISORY: UNSAFE';
 s.className=d.advisory_safe?'ok':'bad'}tick();setInterval(tick,10000);
@@ -95,6 +98,8 @@ float dewPoint(float t, float rh) {
 float clampf(float v, float lo, float hi) {
   return v < lo ? lo : (v > hi ? hi : v);
 }
+
+#include "AstroWeather_Config.h"
 
 int sqmToEstimatedBortle(float sqm) {
   // A convenient heuristic, not a measurement of John Bortle's visual scale.
@@ -129,7 +134,9 @@ void readRain() {
   int ba = rainOneWay(RAIN_B_PIN, RAIN_A_PIN);
   rainRaw = (ab + ba) / 2;
   bool wetNow = rainRaw >= RAIN_THRESHOLD_RAW;
-  if (wetNow) rainLatchUntil = millis() + 600000UL; // Hold unsafe for 10 min.
+  if (wetNow)
+    rainLatchUntil = millis() +
+      (unsigned long)settings.rainLatchMinutes * 60000UL;
   rainDetected = wetNow || ((long)(rainLatchUntil - millis()) > 0);
 }
 
@@ -189,6 +196,8 @@ String numOrNull(float v, int digits=2) {
   return isfinite(v) ? String(v, digits) : "null";
 }
 
+#include "AstroWeather_Telegram.h"
+
 void apiWeather() {
   String j = "{";
   j += "\"air_c\":" + numOrNull(airC) + ",";
@@ -215,6 +224,15 @@ void apiWeather() {
   j += "\"tsl_ok\":" + String(tslOK ? "true":"false") + ",";
   j += "\"advisory_safe\":" + String(advisorySafe() ? "true":"false") + ",";
   j += "\"rain_detected\":" + String(rainDetected ? "true":"false") + ",";
+  j += "\"wifi_connected\":" +
+       String(WiFi.status() == WL_CONNECTED ? "true":"false") + ",";
+  j += "\"wifi_rssi_dbm\":";
+  j += WiFi.status() == WL_CONNECTED ? String(WiFi.RSSI()) : "null";
+  j += ",";
+  j += "\"telegram_enabled\":" +
+       String(settings.telegramEnabled ? "true":"false") + ",";
+  j += "\"telegram_report_minutes\":" + String(settings.reportMinutes) + ",";
+  j += "\"firmware_version\":\"1.3.0\",";
   j += "\"uptime_s\":" + String(millis()/1000);
   j += "}";
   server.send(200, "application/json", j);
@@ -222,20 +240,9 @@ void apiWeather() {
 
 #include "AstroWeather_Alpaca.h"
 
-void setupWiFi() {
-  WiFi.setHostname("astroweather");
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  unsigned long start = millis();
-  while (WiFi.status() != WL_CONNECTED && millis() - start < 15000) delay(250);
-  if (WiFi.status() != WL_CONNECTED) {
-    WiFi.mode(WIFI_AP);
-    WiFi.softAP("AstroWeather-Setup", "astroclear");
-  }
-}
-
 void setup() {
   Serial.begin(115200);
+  loadSettings();
   Wire.begin(21, 22);
   analogReadResolution(12);
   pinMode(RAIN_A_PIN, INPUT);
@@ -248,22 +255,26 @@ void setup() {
     tsl.setTiming(TSL2591_INTEGRATIONTIME_600MS);
   }
   setupWiFi();
-  MDNS.begin("astroweather");
+  MDNS.begin(settings.hostname.c_str());
   server.on("/", [](){ server.send_P(200, "text/html", INDEX_HTML); });
   server.on("/api/weather", apiWeather);
   server.on("/health", [](){ server.send(200, "text/plain", "ok"); });
+  registerSettingsRoutes();
   alpacaBegin();
   server.begin();
   readSensors();
   readRain();
   lastRead = millis();
+  telegramBegin();
   Serial.print("Open http://");
-  Serial.println(WiFi.getMode() == WIFI_AP ? WiFi.softAPIP() : WiFi.localIP());
+  Serial.println(WiFi.status() == WL_CONNECTED
+      ? WiFi.localIP() : WiFi.softAPIP());
 }
 
 void loop() {
   server.handleClient();
   alpacaLoop();
+  settingsLoop();
   if (millis() - lastRead >= 10000) {
     lastRead = millis();
     readSensors();
@@ -272,5 +283,6 @@ void loop() {
     lastRainRead = millis();
     readRain();
   }
+  telegramLoop();
   delay(2);
 }

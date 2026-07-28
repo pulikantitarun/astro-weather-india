@@ -1,4 +1,26 @@
-# AstroWeather India v1.2.0
+# AstroWeather India v1.3.0
+
+## New in v1.3.0
+
+- authenticated local Settings page linked from the dashboard
+- Wi-Fi SSID, password and hostname configuration without reflashing
+- persistent settings in ESP32 non-volatile storage
+- write-only Wi-Fi, administrator, access-point and Telegram secrets
+- configurable humidity, dew, cloud, rain-latch and calibration values
+- Telegram reports off, every 30 minutes or every hour
+- immediate Telegram rain, unsafe and safe-recovery messages
+- optional station-online message and configurable UTC offset
+- certificate-validated Telegram HTTPS and NTP time synchronisation
+- dashboard/API connectivity and reporting status
+- configuration security checks in continuous integration
+
+No additional electronics are required. Existing dashboards, JSON, ASCOM
+Alpaca and INDI functions continue operating without internet access.
+
+The local Settings page uses authenticated but unencrypted HTTP. It must remain
+on a trusted private LAN and must never be exposed using router port forwarding.
+
+## Included from v1.2.0
 
 This release combines the complete printable station, calibrated SQM/Bortle
 estimates and astronomy-software integration.
