@@ -1,4 +1,26 @@
-# AstroWeather India v1.0.0
+# AstroWeather India v1.2.0
+
+This release combines the complete printable station, calibrated SQM/Bortle
+estimates and astronomy-software integration.
+
+## New in v1.2.0
+
+- direct ESP32 ASCOM Alpaca server on HTTP port 80
+- standard Alpaca UDP discovery on port 32227
+- ASCOM ObservingConditions device for temperature, humidity, dew point,
+  cloud cover, sky temperature, sky brightness and calibrated estimated SQM
+- ASCOM SafetyMonitor device for the combined advisory result
+- buildable native INDI Weather driver for KStars/Ekos-compatible systems
+- INDI weather, rain, safety, estimated SQM and estimated Bortle values
+- integration contract tests and continuous INDI driver compilation
+- complete ASCOM and INDI setup/troubleshooting documentation
+
+Rain remains a truthful binary dry/wet safety input; the software does not
+misrepresent it as a measured millimetres-per-hour rain rate. ASIAIR support is
+not claimed because its standard firmware does not permit arbitrary third-party
+INDI drivers.
+
+## Base release contents
 
 First public, buildable release of the low-cost astrophotography weather station.
 
@@ -16,7 +38,7 @@ and safe behaviour at the actual observing site still require staged testing.
 
 Licensed under GNU AGPL v3.0 or later.
 
-## Added after v1.0.0
+## Added in the SQM/Bortle update
 
 - reference-calibrated estimated SQM in mag/arcsec²
 - explicitly heuristic estimated Bortle class

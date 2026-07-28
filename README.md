@@ -28,6 +28,8 @@ imaging advisory through an ESP32 web dashboard and JSON API.
 - configurable `OK` / `UNSAFE` imaging advisory
 - live phone/desktop web dashboard, refreshed every ten seconds
 - JSON API at `/api/weather`
+- direct ASCOM Alpaca ObservingConditions and SafetyMonitor devices
+- native INDI Weather driver for KStars/Ekos-compatible installations
 - sensor health flags and uptime
 - normal Wi-Fi client mode with setup access-point fallback
 - support-free printable parts labelled A-L
@@ -128,6 +130,19 @@ The intended local hostname is `http://astroweather.local`.
 `GET /health` verifies that the HTTP server is responding. Sensor health is
 reported separately in the weather JSON.
 
+### ASCOM and INDI
+
+Firmware v1.2 advertises standard ASCOM Alpaca devices directly from the ESP32
+on the local network. It exposes observing conditions and the combined safety
+advisory without requiring a separate Windows driver executable. See
+[`docs/ASCOM_ALPACA.md`](docs/ASCOM_ALPACA.md).
+
+The native INDI Weather driver in `integrations/indi-astroweather` connects
+KStars/Ekos, Astroberry, StellarMate and other user-installable INDI systems to
+the same station. See [`docs/INDI.md`](docs/INDI.md). Standard ASIAIR firmware
+does not support arbitrary third-party driver installation and is not claimed
+as compatible.
+
 ## Calibration
 
 Local calibration is essential:
@@ -149,8 +164,9 @@ The measurement basis is documented in
 - `cad/` — editable OpenSCAD source
 - `docs/` — BOM, wiring, printing, assembly and calibration
 - `firmware/` — ESP32 source and PlatformIO configuration
+- `integrations/` — native INDI driver (ASCOM Alpaca is built into firmware)
 - `stl/` — print-ready meshes
-- `tools/` — STL validation utility
+- `tools/` — STL, SQM and integration validation utilities
 
 ## Licence
 

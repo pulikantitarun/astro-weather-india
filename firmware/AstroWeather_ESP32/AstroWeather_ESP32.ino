@@ -1,5 +1,5 @@
 /*
-  AstroWeather India v1.0
+  AstroWeather India v1.2
   ESP32 + SHT31 + MLX90614 + TSL2591
 
   SPDX-License-Identifier: AGPL-3.0-or-later
@@ -220,6 +220,8 @@ void apiWeather() {
   server.send(200, "application/json", j);
 }
 
+#include "AstroWeather_Alpaca.h"
+
 void setupWiFi() {
   WiFi.setHostname("astroweather");
   WiFi.mode(WIFI_STA);
@@ -250,15 +252,18 @@ void setup() {
   server.on("/", [](){ server.send_P(200, "text/html", INDEX_HTML); });
   server.on("/api/weather", apiWeather);
   server.on("/health", [](){ server.send(200, "text/plain", "ok"); });
+  alpacaBegin();
   server.begin();
   readSensors();
   readRain();
+  lastRead = millis();
   Serial.print("Open http://");
   Serial.println(WiFi.getMode() == WIFI_AP ? WiFi.softAPIP() : WiFi.localIP());
 }
 
 void loop() {
   server.handleClient();
+  alpacaLoop();
   if (millis() - lastRead >= 10000) {
     lastRead = millis();
     readSensors();

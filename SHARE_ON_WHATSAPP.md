@@ -22,6 +22,10 @@ PETG and mounting straps: approximately ₹250
 
 GitHub: https://github.com/pulikantitarun/astro-weather-india
 
+Version 1.2 also works as an ASCOM Alpaca ObservingConditions + SafetyMonitor
+device directly from the ESP32, and includes a native INDI Weather driver for
+KStars/Ekos-compatible systems.
+
 ⚠️ This is an attended-imaging advisory device, not a certified unattended-roof
 safety controller.
 
@@ -64,6 +68,10 @@ All STL files, editable OpenSCAD, ESP32 firmware, BOM, wiring, calibration
 guide, validation report and assembly visuals are available here:
 
 https://github.com/pulikantitarun/astro-weather-india
+
+Version 1.2 adds direct ASCOM Alpaca discovery, ObservingConditions and
+SafetyMonitor support, plus a buildable native INDI Weather driver for
+KStars/Ekos, Astroberry and StellarMate-style installations.
 
 Licensed under **AGPL-3.0-or-later** so improvements remain open.
 
