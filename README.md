@@ -20,7 +20,9 @@ imaging advisory through an ESP32 web dashboard and JSON API.
 - calculated dew point and dew margin
 - MLX90614 infrared zenith temperature
 - locally calibrated cloud percentage and clarity score
-- TSL2591 lux, full-spectrum and infrared counts
+- TSL2591 lux, full-spectrum, infrared and visible counts
+- calibrated estimated SQM in mag/arcsec²
+- heuristic estimated Bortle class, clearly labelled as an estimate
 - low-duty-cycle, alternating-polarity rain detection
 - ten-minute unsafe rain latch
 - configurable `OK` / `UNSAFE` imaging advisory
@@ -34,8 +36,9 @@ imaging advisory through an ESP32 web dashboard and JSON API.
 
 The clarity score is a calibrated **thermal cloud score**. It does not measure
 seeing, atmospheric turbulence, aerosol optical depth, transparency or star
-FWHM. TSL2591 readings are relative until compared against a known sky-quality
-meter.
+FWHM. The SQM value remains unavailable until the exact TSL2591 and optical head
+are calibrated against a reference meter. Bortle is a visual scale, so its
+dashboard value is always a heuristic estimate.
 
 ## Approximate India build cost
 
@@ -116,7 +119,8 @@ The intended local hostname is `http://astroweather.local`.
 
 - `air_c`, `humidity`, `dew_c`, `dew_margin_c`
 - `sky_c`, `cloud_delta_c`, `cloud_percent`, `clarity_score`
-- `lux`, `tsl_full`, `tsl_ir`
+- `lux`, `tsl_full`, `tsl_ir`, `tsl_visible`, `tsl_light_valid`
+- `sqm_estimate`, `sqm_calibrated`, `bortle_estimate`
 - `rain_raw`, `rain_detected`
 - `sht_ok`, `mlx_ok`, `tsl_ok`
 - `advisory_safe`, `uptime_s`
@@ -131,10 +135,13 @@ Local calibration is essential:
 1. compare the shaded SHT31 against a trustworthy reference;
 2. collect MLX90614 data on at least three clear and three overcast nights;
 3. enter the local clear/overcast thermal deltas in the firmware;
-4. calibrate dry and droplet readings for the rain threshold;
-5. validate the advisory through several supervised imaging sessions.
+4. calculate `SQM_CAL_OFFSET` from paired reference-SQM readings;
+5. calibrate dry and droplet readings for the rain threshold;
+6. validate the advisory through several supervised imaging sessions.
 
 See [`docs/CALIBRATION.md`](docs/CALIBRATION.md).
+The measurement basis is documented in
+[`docs/REFERENCES.md`](docs/REFERENCES.md).
 
 ## Repository layout
 

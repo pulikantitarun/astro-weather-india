@@ -17,6 +17,7 @@ jobs:
           python-version: "3.12"
       - run: pip install trimesh networkx
       - run: python tools/validate_stls.py --check
+      - run: python tools/calculate_sqm_offset.py --self-test
 
   firmware:
     runs-on: ubuntu-latest
