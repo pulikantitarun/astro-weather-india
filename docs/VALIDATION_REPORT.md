@@ -34,3 +34,16 @@ This is digital geometry validation, not a physical K1C or K2 test print.
 Printer flow, elephant foot, filament shrinkage and clone-board dimensions can
 change fit. Print L first and measure electronics before committing to the full
 set.
+
+## Software validation
+
+For v1.2, continuous integration performs:
+
+- ESP32 firmware compilation with PlatformIO;
+- parsing and contract checks for the ASCOM Alpaca and INDI endpoints;
+- native INDI driver configuration and C++ compilation on Ubuntu;
+- SQM calibration-helper self-test;
+- all STL geometry and K1C build-envelope checks above.
+
+Protocol checks do not replace a live conformance test on the finished ESP32,
+and digital STL checks do not prove physical fit or weather sealing.
