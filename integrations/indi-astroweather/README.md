@@ -9,7 +9,7 @@ On a Debian/Ubuntu-based INDI computer:
 
 ```bash
 sudo apt update
-sudo apt install build-essential cmake libindi-dev libcurl4-openssl-dev
+sudo apt install build-essential cmake libindi-dev libcurl4-openssl-dev nlohmann-json3-dev
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 sudo cmake --install build

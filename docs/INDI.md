@@ -10,7 +10,7 @@ Run these commands on the Linux computer that hosts INDI:
 
 ```bash
 sudo apt update
-sudo apt install build-essential cmake libindi-dev libcurl4-openssl-dev
+sudo apt install build-essential cmake libindi-dev libcurl4-openssl-dev nlohmann-json3-dev
 cd integrations/indi-astroweather
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
