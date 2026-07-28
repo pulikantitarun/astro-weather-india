@@ -1,0 +1,19 @@
+Item,Qty,Approximate INR,Required
+ESP32 38-pin DevKit,1,381,Yes
+SHT31 temperature/humidity breakout,1,312.70,Yes
+MLX90614 GY-906 IR thermometer module,1,670,Yes
+TSL2591 19x16 mm light sensor,1,755,Yes
+Exposed-trace rain sensor module,1,49,Yes
+Mixed M-M M-F F-F jumper set,1,139,Yes
+100k resistor pack,1,13,Yes
+1M resistor pack,1,13,Yes
+2x3 inch vero board,1,13,Yes
+4 mm heat-shrink tube 1 m,1,13,Yes
+Electronics flux 10 g,1,25,Yes
+Solder wire 10 g,1,39,Yes
+5 V 2 A adapter with Micro-USB cable,1,195,Yes
+PETG filament approximately 250 g,1,200,Yes
+Reusable mounting straps,2,50,Yes
+Conformal coating for boards only,1,250,Optional
+ELECTRONICS AND ASSEMBLY SUPPLIES SUBTOTAL,,2617.70,Before shipping
+ESTIMATED COMPLETE BUILD,,2867.70,Before shipping excluding optional coating

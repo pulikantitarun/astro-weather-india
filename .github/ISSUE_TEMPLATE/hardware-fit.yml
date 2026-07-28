@@ -1,0 +1,26 @@
+name: Printed-part fit report
+description: Report the result of a calibration or full-part print.
+title: "[Fit]: "
+labels: ["hardware", "3d-printing"]
+body:
+  - type: dropdown
+    attributes:
+      label: Printer
+      options:
+        - Creality K1C
+        - Creality K2 series
+        - Other
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Material and slicer
+      placeholder: "PETG, OrcaSlicer 2.x"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Part and fit result
+      description: Include the STL name, orientation, settings, measurements, and photographs.
+    validations:
+      required: true

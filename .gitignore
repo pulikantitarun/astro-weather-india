@@ -1,0 +1,23 @@
+# Credentials
+secrets.h
+**/secrets.h
+.env
+.env.*
+
+# PlatformIO and Arduino output
+.pio/
+**/build/
+*.bin
+*.elf
+*.map
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

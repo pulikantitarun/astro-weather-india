@@ -1,0 +1,16 @@
+From,To,Notes
+ESP32 3V3,SHT31 VIN,Use 3.3 V
+ESP32 3V3,MLX90614 VIN,Use a module explicitly compatible with 3.3 V
+ESP32 3V3,TSL2591 VIN,Use 3.3 V
+ESP32 GND,SHT31 GND,Common ground
+ESP32 GND,MLX90614 GND,Common ground
+ESP32 GND,TSL2591 GND,Common ground
+ESP32 GPIO21,SHT31 SDA,I2C address 0x44
+ESP32 GPIO21,MLX90614 SDA,I2C address 0x5A
+ESP32 GPIO21,TSL2591 SDA,I2C address 0x29
+ESP32 GPIO22,SHT31 SCL,I2C clock
+ESP32 GPIO22,MLX90614 SCL,I2C clock
+ESP32 GPIO22,TSL2591 SCL,I2C clock
+5 V USB supply,ESP32 USB socket,1 A phone charger or power bank is ample
+ESP32 GPIO32 through 100k resistor,Rain plate electrode A,Add 470k from GPIO32 side to GND
+ESP32 GPIO33 through 100k resistor,Rain plate electrode B,Add 470k from GPIO33 side to GND

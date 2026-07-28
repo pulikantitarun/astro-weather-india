@@ -1,0 +1,20 @@
+name: Firmware or documentation bug
+description: Report a reproducible problem with the firmware, instructions, or files.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Include the exact steps, expected result, and actual result.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: ESP32 board and firmware revision
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs or photographs
+      description: Remove Wi-Fi credentials and other private information before posting.
