@@ -61,6 +61,12 @@ Do not place ordinary glass, acrylic, clear tape, PETG, or epoxy over the
 MLX90614 opening. These materials interfere with the long-wave infrared cloud
 measurement.
 
+Keep the TSL2591 tube geometry and interior finish unchanged after SQM
+calibration. A window, insect mesh, different paint, altered tube length, sensor
+replacement, or tilted mounting changes the optical response and requires a new
+`SQM_CAL_OFFSET`. The dashboard deliberately withholds SQM and Bortle estimates
+until reference calibration is entered.
+
 ## 4. Install the rain plate
 
 1. After printing J on its broad side, rotate it into its working position.

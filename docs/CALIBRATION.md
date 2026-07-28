@@ -39,7 +39,7 @@ Thin high cirrus can remain cold and may be underestimated. Conversely, dew or
 water on the MLX window appears warm and can look like cloud. Inspect raw
 `sky_c`, `cloud_delta_c`, and recent trends whenever the result seems wrong.
 
-## 3. Interpret clarity
+## 3. Interpret thermal clarity
 
 In this firmware:
 
@@ -51,19 +51,78 @@ It answers “how thermally clear does the zenith look after local calibration?�
 It does not measure seeing, atmospheric turbulence, transparency, aerosol
 optical depth, or star FWHM.
 
-The TSL2591 `lux`, `tsl_full`, and `tsl_ir` values are intentionally exposed as
-relative measurements. Compare nights at the same installation, with similar
-Moon altitude/phase and after full darkness. Clouds may brighten an urban sky
-but darken a rural sky, so a universal lux-to-clarity direction is impossible.
+Clouds may brighten an urban sky but darken a rural sky, so a universal
+light-level-to-clarity direction is impossible. The SQM estimate is reported
+separately and is not used by the imaging safety advisory.
 
-For absolute mag/arcsec²:
+## 4. Calibrate the SQM estimate
 
-1. Place a commercial SQM beside the station.
-2. Collect paired readings over clear nights and multiple brightness levels.
-3. Fit an offset/slope for this exact sensor and optical tube.
-4. Re-check after changing the tube, window, paint, or mounting angle.
+The TSL2591 uses maximum gain and 600 ms integration. Keep those settings fixed
+after calibration. The firmware calculates:
 
-## 4. Dew and imaging advisory
+```text
+visible_counts = tsl_full - tsl_ir
+estimated_SQM = SQM_CAL_OFFSET - 2.5 × log10(visible_counts)
+```
+
+`SQM_CAL_OFFSET` defaults to `NAN`, so the dashboard shows `CALIBRATE` instead
+of inventing a reading.
+
+To calibrate:
+
+1. Mount the station permanently, pointing the light-sensor opening at the
+   zenith.
+2. Place a reference SQM beside it with the same pointing direction.
+3. Wait until astronomical darkness on a clear, Moon-free night. Avoid the
+   Milky Way, direct lamps, haze, cloud and shadows across either aperture.
+4. Record at least five simultaneous pairs in
+   `docs/SQM_CALIBRATION_TEMPLATE.csv`. Copy `tsl_full`, `tsl_ir`, and
+   `tsl_visible` from `/api/weather`.
+5. Calculate the offset:
+
+   ```bash
+   python tools/calculate_sqm_offset.py docs/SQM_CALIBRATION_TEMPLATE.csv
+   ```
+
+6. Enter the recommended value near the top of the firmware:
+
+   ```cpp
+   float SQM_CAL_OFFSET = 27.1234;
+   ```
+
+7. Upload the firmware and repeat simultaneous readings on at least two
+   additional nights.
+
+For a single paired observation, the equivalent calculation is:
+
+```text
+SQM_CAL_OFFSET = reference_SQM + 2.5 × log10(visible_counts)
+```
+
+The API reports `tsl_light_valid=false` and suppresses the SQM estimate when the
+sensor has no usable visible counts or either raw channel is near saturation.
+Changing the sensor, optical tube, window, paint, mounting angle, gain or
+integration time invalidates the offset.
+
+The displayed Bortle class is a heuristic conversion from estimated SQM:
+
+| Estimated SQM (mag/arcsec²) | Display |
+|---:|---:|
+| 21.99 or higher | Bortle 1 |
+| 21.89–21.98 | Bortle 2 |
+| 21.69–21.88 | Bortle 3 |
+| 20.49–21.68 | Bortle 4 |
+| 19.50–20.48 | Bortle 5 |
+| 18.94–19.49 | Bortle 6 |
+| 18.38–18.93 | Bortle 7 |
+| 17.80–18.37 | Bortle 8 |
+| Below 17.80 | Bortle 9 |
+
+Bortle is fundamentally a visual assessment of the whole sky. Treat this value
+as a convenient label, not a measured Bortle classification. Moonlight, the
+Milky Way, airglow, haze, cloud and nearby lights can shift it substantially.
+
+## 5. Dew and imaging advisory
 
 Default advisory limits are:
 
@@ -75,13 +134,13 @@ These are conservative starting points, not safety standards. A dew heater on
 the telescope may allow imaging closer to dew point, but it does not stop
 condensation on the station optics.
 
-## 5. Keep a validation log
+## 6. Keep a validation log
 
 For the first month, note timestamp, Moon, visual cloud, haze, actual imaging
 quality, and the JSON reading. Re-tune thresholds for monsoon, winter, and very
 dry seasons if their baselines differ.
 
-## 6. Calibrate the rain plate
+## 7. Calibrate the rain plate
 
 1. Let the clean plate dry completely and record `rain_raw` for ten readings.
 2. Mist it with a few separate tap-water droplets and record ten readings.

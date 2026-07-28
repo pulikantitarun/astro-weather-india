@@ -42,6 +42,7 @@ It provides:
 • locally calibrated cloud percentage
 • thermal clarity score
 • relative zenith lux, full-spectrum and IR counts
+• reference-calibrated estimated SQM and estimated Bortle class
 • corrosion-reduced rain detection with a 10-minute unsafe latch
 • live phone/PC dashboard over Wi-Fi
 • JSON API for future Home Assistant, Node-RED or observatory integration

@@ -15,3 +15,10 @@ for the ESP32 Dev Module target. Physical fit, sensor calibration, weather seali
 and safe behaviour at the actual observing site still require staged testing.
 
 Licensed under GNU AGPL v3.0 or later.
+
+## Added after v1.0.0
+
+- reference-calibrated estimated SQM in mag/arcsec²
+- explicitly heuristic estimated Bortle class
+- dashboard and JSON status for calibration, underflow, and saturation
+- calibration worksheet and offset calculator

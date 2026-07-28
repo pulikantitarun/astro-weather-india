@@ -31,6 +31,12 @@ float DEW_MARGIN_LIMIT_C = 2.0;
 float CLOUD_LIMIT_PERCENT = 55.0;
 int RAIN_THRESHOLD_RAW = 700;    // Calibrate between dry and droplet readings.
 
+// Leave as NAN until calibrated against a reference SQM. With the TSL2591 fixed
+// at maximum gain and 600 ms integration:
+// offset = reference_SQM + 2.5 * log10(reference_visible_counts)
+float SQM_CAL_OFFSET = NAN;
+const uint16_t TSL_SATURATION_COUNTS = 65000;
+
 // Cheapest rain input: bare exposed-trace plate, no LM393 board.
 // Each GPIO connects to one plate electrode through 100k; each GPIO also has
 // 470k to GND. Alternating polarity and a very low duty cycle reduce corrosion.
@@ -40,8 +46,10 @@ const int RAIN_B_PIN = 33;
 bool shtOK = false, mlxOK = false, tslOK = false;
 float airC = NAN, humidity = NAN, dewC = NAN, skyC = NAN;
 float cloudDeltaC = NAN, cloudPercent = NAN, clarityScore = NAN;
-float lux = NAN;
-uint16_t tslFull = 0, tslIR = 0;
+float lux = NAN, sqmEstimate = NAN;
+uint16_t tslFull = 0, tslIR = 0, tslVisible = 0;
+int bortleEstimate = 0;
+bool tslLightValid = false;
 unsigned long lastRead = 0;
 unsigned long lastRainRead = 0, rainLatchUntil = 0;
 int rainRaw = 0;
@@ -59,15 +67,18 @@ body{font-family:system-ui;background:#07111d;color:#e9f2ff;margin:0;padding:18p
 </style></head><body><div class="wrap">
 <div class="top"><h1>AstroWeather India</h1><span id="safe">Reading…</span></div>
 <div class="grid" id="grid"></div>
-<p class="note">Advisory only: the low-cost rain plate is consumable. “Clarity” is primarily the calibrated IR cloud score.
-Sky lux is relative until compared with a known sky-quality meter. Never use this alone to control an unattended roof.</p>
+<p class="note">Advisory only: “Clarity” is the calibrated IR cloud score. SQM and Bortle are estimates from the
+TSL2591 and remain unavailable until reference calibration. Never use this alone to control an unattended roof.</p>
 </div><script>
 const f=(x,n=1)=>x===null?'—':Number(x).toFixed(n);
 async function tick(){let d=await (await fetch('/api/weather')).json();
+let sqm=d.sqm_estimate===null?(d.sqm_calibrated?'OUT OF RANGE':'CALIBRATE'):f(d.sqm_estimate,2)+' mag/arcsec²';
+let bortle=d.bortle_estimate===null?'—':'Bortle '+d.bortle_estimate;
 let a=[['Air',f(d.air_c)+' °C'],['Humidity',f(d.humidity)+' %'],
 ['Dew point',f(d.dew_c)+' °C'],['Dew margin',f(d.dew_margin_c)+' °C'],
 ['Sky IR',f(d.sky_c)+' °C'],['Cloud delta',f(d.cloud_delta_c)+' °C'],
 ['Cloud estimate',f(d.cloud_percent,0)+' %'],['Clarity',f(d.clarity_score,0)+' / 100'],
+['SQM estimate',sqm],['Estimated Bortle',bortle],
 ['Zenith light',f(d.lux,6)+' lux'],['Rain plate',d.rain_detected?'WET':'dry']];
 document.querySelector('#grid').innerHTML=a.map(x=>`<div class=card>${x[0]}<div class=v>${x[1]}</div></div>`).join('');
 let s=document.querySelector('#safe');s.textContent=d.advisory_safe?'ADVISORY: OK':'ADVISORY: UNSAFE';
@@ -83,6 +94,20 @@ float dewPoint(float t, float rh) {
 
 float clampf(float v, float lo, float hi) {
   return v < lo ? lo : (v > hi ? hi : v);
+}
+
+int sqmToEstimatedBortle(float sqm) {
+  // A convenient heuristic, not a measurement of John Bortle's visual scale.
+  if (!isfinite(sqm)) return 0;
+  if (sqm >= 21.99) return 1;
+  if (sqm >= 21.89) return 2;
+  if (sqm >= 21.69) return 3;
+  if (sqm >= 20.49) return 4;
+  if (sqm >= 19.50) return 5;
+  if (sqm >= 18.94) return 6;
+  if (sqm >= 18.38) return 7;
+  if (sqm >= 17.80) return 8;
+  return 9;
 }
 
 int rainOneWay(int drivePin, int sensePin) {
@@ -120,12 +145,25 @@ void readSensors() {
     if (isfinite(s)) skyC = s;
   }
   if (tslOK) {
-    sensors_event_t event;
-    tsl.getEvent(&event);
-    lux = (event.light >= 0 && event.light < 1000000) ? event.light : NAN;
     uint32_t lum = tsl.getFullLuminosity();
     tslIR = lum >> 16;
     tslFull = lum & 0xFFFF;
+    tslVisible = tslFull > tslIR ? tslFull - tslIR : 0;
+    tslLightValid = tslVisible > 0 &&
+                    tslFull < TSL_SATURATION_COUNTS &&
+                    tslIR < TSL_SATURATION_COUNTS;
+    if (tslLightValid) {
+      float measuredLux = tsl.calculateLux(tslFull, tslIR);
+      lux = isfinite(measuredLux) && measuredLux >= 0 ? measuredLux : NAN;
+      sqmEstimate = isfinite(SQM_CAL_OFFSET)
+        ? SQM_CAL_OFFSET - 2.5 * log10((float)tslVisible)
+        : NAN;
+      bortleEstimate = sqmToEstimatedBortle(sqmEstimate);
+    } else {
+      lux = NAN;
+      sqmEstimate = NAN;
+      bortleEstimate = 0;
+    }
   }
 
   dewC = dewPoint(airC, humidity);
@@ -164,6 +202,13 @@ void apiWeather() {
   j += "\"lux\":" + numOrNull(lux,6) + ",";
   j += "\"tsl_full\":" + String(tslFull) + ",";
   j += "\"tsl_ir\":" + String(tslIR) + ",";
+  j += "\"tsl_visible\":" + String(tslVisible) + ",";
+  j += "\"tsl_light_valid\":" + String(tslLightValid ? "true":"false") + ",";
+  j += "\"sqm_estimate\":" + numOrNull(sqmEstimate) + ",";
+  j += "\"sqm_calibrated\":" + String(isfinite(SQM_CAL_OFFSET) ? "true":"false") + ",";
+  j += "\"bortle_estimate\":";
+  j += bortleEstimate > 0 ? String(bortleEstimate) : "null";
+  j += ",";
   j += "\"rain_raw\":" + String(rainRaw) + ",";
   j += "\"sht_ok\":" + String(shtOK ? "true":"false") + ",";
   j += "\"mlx_ok\":" + String(mlxOK ? "true":"false") + ",";
