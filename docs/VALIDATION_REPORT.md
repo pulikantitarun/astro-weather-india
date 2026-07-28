@@ -42,6 +42,7 @@ For v1.2, continuous integration performs:
 - ESP32 firmware compilation with PlatformIO;
 - parsing and contract checks for the ASCOM Alpaca and INDI endpoints;
 - native INDI driver configuration and C++ compilation on Ubuntu;
+- web-configuration, NVS-key and Telegram TLS security contract checks;
 - SQM calibration-helper self-test;
 - all STL geometry and K1C build-envelope checks above.
 

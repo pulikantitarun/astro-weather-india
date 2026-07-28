@@ -38,6 +38,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: python tools/test_integration_contracts.py
+      - run: python tools/test_configuration_contract.py
       - run: sudo apt-get update
       - run: sudo apt-get install -y build-essential cmake libindi-dev libcurl4-openssl-dev nlohmann-json3-dev
       - run: cmake -S integrations/indi-astroweather -B build/indi -DCMAKE_BUILD_TYPE=Release

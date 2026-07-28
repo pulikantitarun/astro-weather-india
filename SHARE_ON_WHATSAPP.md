@@ -26,6 +26,10 @@ Version 1.2 also works as an ASCOM Alpaca ObservingConditions + SafetyMonitor
 device directly from the ESP32, and includes a native INDI Weather driver for
 KStars/Ekos-compatible systems.
 
+Version 1.3 adds a phone-friendly Settings page for Wi-Fi, Telegram and weather
+limits, with optional 30/60-minute reports plus immediate rain and unsafe
+alerts. No additional electronics are needed.
+
 ⚠️ This is an attended-imaging advisory device, not a certified unattended-roof
 safety controller.
 
@@ -72,6 +76,9 @@ https://github.com/pulikantitarun/astro-weather-india
 Version 1.2 adds direct ASCOM Alpaca discovery, ObservingConditions and
 SafetyMonitor support, plus a buildable native INDI Weather driver for
 KStars/Ekos, Astroberry and StellarMate-style installations.
+
+Version 1.3 adds persistent web configuration and optional Telegram weather
+reports, rain alerts and safe/unsafe state-change notifications.
 
 Licensed under **AGPL-3.0-or-later** so improvements remain open.
 

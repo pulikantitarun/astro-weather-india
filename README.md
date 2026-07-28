@@ -27,6 +27,9 @@ imaging advisory through an ESP32 web dashboard and JSON API.
 - ten-minute unsafe rain latch
 - configurable `OK` / `UNSAFE` imaging advisory
 - live phone/desktop web dashboard, refreshed every ten seconds
+- authenticated web configuration for Wi-Fi, Telegram and weather thresholds
+- optional Telegram reports every 30 or 60 minutes
+- immediate Telegram rain, unsafe and recovery notifications
 - JSON API at `/api/weather`
 - direct ASCOM Alpaca ObservingConditions and SafetyMonitor devices
 - native INDI Weather driver for KStars/Ekos-compatible installations
@@ -105,15 +108,26 @@ pio run --target upload
 pio device monitor
 ```
 
-Edit `secrets.h` with the local Wi-Fi name and password. This file is ignored by
-Git and must never be committed.
+You may edit `secrets.h` with initial Wi-Fi details, but v1.3 can be configured
+entirely from its local web page. `secrets.h` is ignored by Git and must never
+be committed.
 
-If normal Wi-Fi connection fails after 15 seconds, the station creates:
+If normal Wi-Fi connection fails after 20 seconds, the station creates:
 
 - SSID: `AstroWeather-Setup`
 - password: `astroclear`
 
 The intended local hostname is `http://astroweather.local`.
+
+On first setup, connect to the fallback network and open
+`http://192.168.4.1/settings`. The default settings login is
+`admin` / `astroadmin`. Change both the settings password and setup-access-point
+password immediately. See
+[`docs/WEB_CONFIGURATION.md`](docs/WEB_CONFIGURATION.md).
+
+Telegram configuration, 30/60-minute reports and event notifications are
+documented in [`docs/TELEGRAM.md`](docs/TELEGRAM.md). Telegram is outbound-only;
+the station does not require router port forwarding.
 
 ### API fields
 
@@ -125,7 +139,9 @@ The intended local hostname is `http://astroweather.local`.
 - `sqm_estimate`, `sqm_calibrated`, `bortle_estimate`
 - `rain_raw`, `rain_detected`
 - `sht_ok`, `mlx_ok`, `tsl_ok`
-- `advisory_safe`, `uptime_s`
+- `advisory_safe`, `uptime_s`, `firmware_version`
+- `wifi_connected`, `wifi_rssi_dbm`
+- `telegram_enabled`, `telegram_report_minutes`
 
 `GET /health` verifies that the HTTP server is responding. Sensor health is
 reported separately in the weather JSON.
@@ -162,7 +178,7 @@ The measurement basis is documented in
 
 - `assets/` — assembly visuals
 - `cad/` — editable OpenSCAD source
-- `docs/` — BOM, wiring, printing, assembly and calibration
+- `docs/` — BOM, wiring, printing, assembly, calibration and software setup
 - `firmware/` — ESP32 source and PlatformIO configuration
 - `integrations/` — native INDI driver (ASCOM Alpaca is built into firmware)
 - `stl/` — print-ready meshes
