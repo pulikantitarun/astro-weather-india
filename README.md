@@ -69,6 +69,12 @@ See [`docs/BOM_India.csv`](docs/BOM_India.csv) for the complete itemized list.
 
 ![Exploded assembly](assets/assembly-exploded.png)
 
+An optional non-cellular snap-fit and cable-management v3 is available in
+`stl_snapfit_v3/`. It adds a releasable lid, sky-head detents, split cable
+grommets, internal strain relief and an extended mounting plate with a cable
+spine. Print its six-piece L3 calibration kit before the full set. See
+[`docs/SNAPFIT_V3.md`](docs/SNAPFIT_V3.md).
+
 1. Print `stl/L_Fit_Kit_4_PIECES_PRINT_FIRST.stl`.
 2. Confirm both press-fit pairs before printing the full set.
 3. Print the remaining files in their supplied orientation with supports off.
