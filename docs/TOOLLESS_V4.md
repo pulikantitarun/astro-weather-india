@@ -4,6 +4,10 @@ This optional non-cellular revision preserves the validated v2 and v3 files.
 It adds a separate `stl_toolless_v4/` set intended to assemble without screws
 or structural cable ties.
 
+The v4 parts have clean, unmarked physical surfaces. There are no embossed
+part IDs or function labels. Use the descriptive STL filenames and the images
+in this guide to identify each component.
+
 ![Tool-less v4 assembly](../assets/tool-less-v4-assembly-preview.png)
 
 ![Tool-less v4 interfaces](../assets/tool-less-v4-interface-preview.png)

@@ -49,9 +49,10 @@ grommet_cable_d = 5.4;
 cable_clip_d = 5.5;
 
 module v3_mark(txt, p=[0,0,0], size=5, h=0.55) {
-    translate(p) linear_extrude(h)
-        text(txt,size=size,font="Liberation Sans:style=Bold",
-             halign="center",valign="center");
+    if (is_undef($show_part_labels) || $show_part_labels)
+        translate(p) linear_extrude(h)
+            text(txt,size=size,font="Liberation Sans:style=Bold",
+                 halign="center",valign="center");
 }
 
 module snap_window(y_back=false) {
@@ -113,16 +114,18 @@ module A3_box() {
             v3_mark("A3  SNAP BOX",[60,68,3],5);
             v3_mark("POWER",[20,22,3],3.2);
             v3_mark("SENSORS",[100,22,3],3.2);
-            translate([60,0,38.5]) rotate([-90,0,0])
-                linear_extrude(0.5)
-                    text("PUSH",size=3.2,
-                         font="Liberation Sans:style=Bold",
-                         halign="center",valign="center");
-            translate([60,80,38.5]) rotate([90,0,0])
-                linear_extrude(0.5)
-                    text("PUSH",size=3.2,
-                         font="Liberation Sans:style=Bold",
-                         halign="center",valign="center");
+            if (is_undef($show_part_labels) || $show_part_labels) {
+                translate([60,0,38.5]) rotate([-90,0,0])
+                    linear_extrude(0.5)
+                        text("PUSH",size=3.2,
+                             font="Liberation Sans:style=Bold",
+                             halign="center",valign="center");
+                translate([60,80,38.5]) rotate([90,0,0])
+                    linear_extrude(0.5)
+                        text("PUSH",size=3.2,
+                             font="Liberation Sans:style=Bold",
+                             halign="center",valign="center");
+            }
         }
         snap_window(false);
         snap_window(true);

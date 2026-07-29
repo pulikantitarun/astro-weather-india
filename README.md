@@ -80,6 +80,8 @@ snap-on shield louvers, click-in rods and roof, an SHT31 sled detent, PCB
 retaining fingers, a compliant rain cradle, a snap electronics carrier and a
 click-in mounting plate. Print its ten-piece L4 kit first and follow
 [`docs/TOOLLESS_V4.md`](docs/TOOLLESS_V4.md).
+Its physical surfaces are intentionally unmarked; identification uses the STL
+filenames and assembly images.
 
 ![Tool-less v4 assembly](assets/tool-less-v4-assembly-preview.png)
 

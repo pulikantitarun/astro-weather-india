@@ -30,6 +30,7 @@ use <AstroWeather_PrintReady_v2.scad>
 
 $fn = 64;
 part_id = 90;
+$show_part_labels = false;
 
 rod_nominal = 4.00;
 rod_socket = 4.35;
@@ -46,9 +47,10 @@ rain_board_width = 55.0;
 rain_board_length = 40.0;
 
 module v4_mark(txt,p=[0,0,0],size=4,h=0.50) {
-    translate(p) linear_extrude(h)
-        text(txt,size=size,font="Liberation Sans:style=Bold",
-             halign="center",valign="center");
+    if ($show_part_labels)
+        translate(p) linear_extrude(h)
+            text(txt,size=size,font="Liberation Sans:style=Bold",
+                 halign="center",valign="center");
 }
 
 module carrier_snap_stud() {

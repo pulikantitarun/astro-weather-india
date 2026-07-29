@@ -52,7 +52,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 67445.32,
+      "volume_mm3": 67334.7,
       "print_dimensions_mm": [
         120.0,
         82.2,
@@ -68,7 +68,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 33868.03,
+      "volume_mm3": 33766.21,
       "print_dimensions_mm": [
         124.0,
         84.0,
@@ -84,7 +84,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 11772.28,
+      "volume_mm3": 11756.14,
       "print_dimensions_mm": [
         87.0,
         70.0,
@@ -100,7 +100,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 6500.97,
+      "volume_mm3": 6486.46,
       "print_dimensions_mm": [
         69.91,
         70.0,
@@ -116,11 +116,11 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 27221.57,
+      "volume_mm3": 27206.91,
       "print_dimensions_mm": [
         72.0,
         72.0,
-        8.5
+        8.0
       ],
       "bed_contact_z_min_mm": 0.0,
       "fits_k1c_220x220x250": true,
@@ -132,11 +132,11 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 1138.37,
+      "volume_mm3": 1135.91,
       "print_dimensions_mm": [
         68.4,
         4.5,
-        4.65
+        4.25
       ],
       "bed_contact_z_min_mm": 0.0,
       "fits_k1c_220x220x250": true,
@@ -148,7 +148,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 2521.46,
+      "volume_mm3": 2517.38,
       "print_dimensions_mm": [
         34.0,
         31.0,
@@ -164,7 +164,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 43685.54,
+      "volume_mm3": 43655.01,
       "print_dimensions_mm": [
         112.0,
         50.0,
@@ -180,7 +180,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 10432.73,
+      "volume_mm3": 10382.22,
       "print_dimensions_mm": [
         92.0,
         50.0,
@@ -196,7 +196,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 17968.7,
+      "volume_mm3": 17948.7,
       "print_dimensions_mm": [
         26.0,
         55.0,
@@ -212,7 +212,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 67061.3,
+      "volume_mm3": 66970.57,
       "print_dimensions_mm": [
         160.0,
         100.0,
@@ -228,7 +228,7 @@
       "winding_consistent": true,
       "components": 10,
       "expected_components": 10,
-      "volume_mm3": 12922.39,
+      "volume_mm3": 12891.75,
       "print_dimensions_mm": [
         124.5,
         66.0,
@@ -244,7 +244,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 1458.28,
+      "volume_mm3": 1453.57,
       "print_dimensions_mm": [
         22.0,
         16.0,
@@ -276,7 +276,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 8060.42,
+      "volume_mm3": 8054.62,
       "print_dimensions_mm": [
         92.0,
         46.0,
