@@ -91,6 +91,14 @@ cradle and enclosure remain individually serviceable. See
 [`docs/UNIFIED_V5.md`](docs/UNIFIED_V5.md) and print its twelve-piece L5 fit kit
 before the full plate.
 
+> **V5.1 correction:** Do not print the original V5 A5, K5 or L5 files from
+> commit `88b9ef8`. The carrier pegs were connected but too short to retain O5,
+> and the post-export audit found dock interference, unsupported rain-cradle
+> regions, a mounting-slot clash and cable guides that did not retain the loom.
+> Commit `73a9ac6` replaces those files with supported carrier posts, verified
+> dock clearances, integrated rain pedestals, a relocated slot and flexible
+> cable-retaining jaws. Download or clone the latest branch and print L5 first.
+
 ![V5 unified base](assets/unified-v5-assembly-preview.png)
 
 1. Print `stl/L_Fit_Kit_4_PIECES_PRINT_FIRST.stl`.

@@ -20,7 +20,14 @@ backplane.
 
 ## V5.1 engineering corrections
 
-The post-export assembly audit corrected the following before physical print:
+The original V5 export in commit `88b9ef8` must not be printed. Its four
+carrier pegs were part of the A5 mesh and were not floating, but their retaining
+heads ended below the top of O5, so the carrier could sit on them without
+latching. A broader installed-state audit also found positive-volume dock
+interference, incomplete rain-cradle support, a mounting slot cutting a rain
+pedestal and open cable guides that could not retain the loom.
+
+V5.1 corrects those issues as follows:
 
 - all four O5 carrier posts now support the carrier at Z=8.0 mm and project
   their retaining heads 1.0 mm above its 2 mm base;
