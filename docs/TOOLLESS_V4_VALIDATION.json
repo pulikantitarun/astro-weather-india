@@ -1,0 +1,291 @@
+{
+  "revision": "tool-less-snap-v4",
+  "criteria": "complete expected set, watertight, consistent winding, expected component count, positive volume, K1C/K2 envelope and Z=0",
+  "missing": [],
+  "unexpected": [],
+  "interface_checks": {
+    "rod_detent_diametral_interference_mm": {
+      "value": 0.15,
+      "allowed": [
+        0.05,
+        0.25
+      ],
+      "pass": true
+    },
+    "louver_retaining_shoulder_total_mm": {
+      "value": 0.6,
+      "allowed": [
+        0.4,
+        0.8
+      ],
+      "pass": true
+    },
+    "carrier_detent_diametral_interference_mm": {
+      "value": 0.15,
+      "allowed": [
+        0.05,
+        0.25
+      ],
+      "pass": true
+    },
+    "mount_hook_overlap_mm": {
+      "value": 0.4,
+      "allowed": [
+        0.25,
+        0.55
+      ],
+      "pass": true
+    },
+    "pcb_hook_overlap_mm": {
+      "value": 0.45,
+      "allowed": [
+        0.25,
+        0.6
+      ],
+      "pass": true
+    }
+  },
+  "results": [
+    {
+      "file": "A4_Toolless_Electronics_Box.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 67445.32,
+      "print_dimensions_mm": [
+        120.0,
+        82.2,
+        42.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "B4_Release_Lid.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 33868.03,
+      "print_dimensions_mm": [
+        124.0,
+        84.0,
+        14.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "C4_Click_Shield_Base.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 11772.28,
+      "print_dimensions_mm": [
+        87.0,
+        70.0,
+        8.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "D4_Side_Snap_Louver_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 6500.97,
+      "print_dimensions_mm": [
+        69.91,
+        70.0,
+        9.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "E4_Click_Shield_Roof.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 27221.57,
+      "print_dimensions_mm": [
+        72.0,
+        72.0,
+        8.5
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "F4_Detent_Rod_PRINT_3.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1138.37,
+      "print_dimensions_mm": [
+        68.4,
+        4.5,
+        4.65
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "G4_Click_SHT31_Sled.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 2521.46,
+      "print_dimensions_mm": [
+        34.0,
+        31.0,
+        6.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "H4_Sky_Head_Top.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 43685.54,
+      "print_dimensions_mm": [
+        112.0,
+        50.0,
+        35.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "I4_PCB_Snap_Sky_Tray.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 10432.73,
+      "print_dimensions_mm": [
+        92.0,
+        50.0,
+        7.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "J4_Compliant_Rain_Cradle.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 17968.7,
+      "print_dimensions_mm": [
+        26.0,
+        55.0,
+        64.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "K4_Click_Mounting_Plate.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 67061.3,
+      "print_dimensions_mm": [
+        160.0,
+        100.0,
+        11.8
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "L4_Fit_Kit_10_PIECES_PRINT_FIRST.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 10,
+      "expected_components": 10,
+      "volume_mm3": 12922.39,
+      "print_dimensions_mm": [
+        124.5,
+        66.0,
+        17.8
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "M4_Cable_Clip_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1458.28,
+      "print_dimensions_mm": [
+        22.0,
+        16.0,
+        11.7
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "N4_Split_Grommet_PRINT_2.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 298.89,
+      "print_dimensions_mm": [
+        13.0,
+        12.95,
+        4.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "O4_Snap_Electronics_Carrier.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 8060.42,
+      "print_dimensions_mm": [
+        92.0,
+        46.0,
+        6.5
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}
