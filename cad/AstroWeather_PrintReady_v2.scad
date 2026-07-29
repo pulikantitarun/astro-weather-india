@@ -42,9 +42,10 @@ module rrbox(s=[20,20,5],r=3) {
 }
 
 module mark(txt, p=[0,0,0], size=5, h=0.55) {
-    translate(p) linear_extrude(h)
-        text(txt,size=size,font="Liberation Sans:style=Bold",
-             halign="center",valign="center");
+    if (is_undef($show_part_labels) || $show_part_labels)
+        translate(p) linear_extrude(h)
+            text(txt,size=size,font="Liberation Sans:style=Bold",
+                 halign="center",valign="center");
 }
 
 module A_box() {
@@ -247,11 +248,12 @@ module J_rain_raw() {
             cube([20,8,8]);
             translate([5,-0.1,2]) cube([10,8.2,4]);
         }
-        // Side label; this becomes upward-facing after export rotation.
-        translate([0,25,11]) rotate([90,0,90])
-            linear_extrude(0.6)
-                text("J RAIN",size=5,font="Liberation Sans:style=Bold",
-                     halign="center",valign="center");
+        if (is_undef($show_part_labels) || $show_part_labels)
+            // Side label; this becomes upward-facing after export rotation.
+            translate([0,25,11]) rotate([90,0,90])
+                linear_extrude(0.6)
+                    text("J RAIN",size=5,font="Liberation Sans:style=Bold",
+                         halign="center",valign="center");
       }
       for (x=[10,54])
           translate([x,-0.1,5.5]) rotate([-90,0,0])

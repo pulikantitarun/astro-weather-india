@@ -1,0 +1,334 @@
+{
+  "revision": "unified-base-v5",
+  "criteria": "complete expected set, watertight, consistent winding, expected component count, positive volume, K1C/K2 envelope and Z=0",
+  "missing": [],
+  "unexpected": [],
+  "interface_checks": {
+    "base_width_mm": {
+      "value": 210.0,
+      "maximum_k1c_mm": 220,
+      "pass": true
+    },
+    "base_depth_mm": {
+      "value": 200.0,
+      "maximum_k1c_mm": 220,
+      "pass": true
+    },
+    "edge_capture_clearance_mm": {
+      "value": 0.25,
+      "allowed": [
+        0.2,
+        0.4
+      ],
+      "pass": true
+    },
+    "edge_hook_overlap_mm": {
+      "value": 0.4,
+      "allowed": [
+        0.25,
+        0.55
+      ],
+      "pass": true
+    },
+    "carrier_support_plane_mm": {
+      "value": 8.0,
+      "expected": 8.0,
+      "pass": true
+    },
+    "rain_rail_seating_lift_mm": {
+      "value": 1.6,
+      "expected": 1.6,
+      "pass": true
+    },
+    "rain_front_hook_clearance_mm": {
+      "value": 0.291,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "rain_rear_hook_clearance_mm": {
+      "value": 0.268,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "rain_nominal_clip_clearance_mm": {
+      "value": 0.3,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "integrated_cable_clip_throat_mm": {
+      "value": 4.6,
+      "target_cable_od_mm": [
+        4.0,
+        5.5
+      ],
+      "pass": true
+    },
+    "box_to_shield_plan_gap_mm": {
+      "value": 10.0,
+      "minimum": 8.0,
+      "pass": true
+    },
+    "shield_to_rear_zone_gap_mm": {
+      "value": 15.0,
+      "minimum": 10.0,
+      "pass": true
+    },
+    "sky_to_rain_plan_gap_mm": {
+      "value": 43.0,
+      "minimum": 10.0,
+      "pass": true
+    }
+  },
+  "results": [
+    {
+      "file": "A5_Clean_Electronics_Box.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 67913.32,
+      "print_dimensions_mm": [
+        120.0,
+        82.2,
+        42.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "B5_Release_Lid.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 33766.21,
+      "print_dimensions_mm": [
+        124.0,
+        84.0,
+        14.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "C5_Click_Shield_Base.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 11756.14,
+      "print_dimensions_mm": [
+        87.0,
+        70.0,
+        8.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "D5_Side_Snap_Louver_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 6486.46,
+      "print_dimensions_mm": [
+        69.91,
+        70.0,
+        9.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "E5_Click_Shield_Roof.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 27206.91,
+      "print_dimensions_mm": [
+        72.0,
+        72.0,
+        8.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "F5_Detent_Rod_PRINT_3.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1135.91,
+      "print_dimensions_mm": [
+        68.4,
+        4.5,
+        4.25
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "G5_Click_SHT31_Sled.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 2517.38,
+      "print_dimensions_mm": [
+        34.0,
+        31.0,
+        6.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "H5_Sky_Head_Top.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 43655.01,
+      "print_dimensions_mm": [
+        112.0,
+        50.0,
+        35.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "I5_PCB_Snap_Sky_Tray.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 10382.22,
+      "print_dimensions_mm": [
+        92.0,
+        50.0,
+        7.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "J5_Compliant_Rain_Cradle.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 17948.7,
+      "print_dimensions_mm": [
+        26.0,
+        55.0,
+        64.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "K5_Single_Unified_Base_Plate.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 165263.66,
+      "print_dimensions_mm": [
+        210.0,
+        200.0,
+        31.2
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "L5_Fit_Kit_12_PIECES_PRINT_FIRST.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 12,
+      "expected_components": 12,
+      "volume_mm3": 16046.31,
+      "print_dimensions_mm": [
+        124.5,
+        90.0,
+        17.8
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "M5_Cable_Clip_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1453.57,
+      "print_dimensions_mm": [
+        22.0,
+        16.0,
+        11.7
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "N5_Split_Grommet_PRINT_2.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 298.89,
+      "print_dimensions_mm": [
+        13.0,
+        12.95,
+        4.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "O5_Snap_Electronics_Carrier.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 8054.62,
+      "print_dimensions_mm": [
+        92.0,
+        46.0,
+        6.5
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}

@@ -69,6 +69,38 @@ See [`docs/BOM_India.csv`](docs/BOM_India.csv) for the complete itemized list.
 
 ![Exploded assembly](assets/assembly-exploded.png)
 
+An optional non-cellular snap-fit and cable-management v3 is available in
+`stl_snapfit_v3/`. It adds a releasable lid, sky-head detents, split cable
+grommets, internal strain relief and an extended mounting plate with a cable
+spine. Print its six-piece L3 calibration kit before the full set. See
+[`docs/SNAPFIT_V3.md`](docs/SNAPFIT_V3.md).
+
+The newer optional tool-less v4 set is in `stl_toolless_v4/`. It adds lateral
+snap-on shield louvers, click-in rods and roof, an SHT31 sled detent, PCB
+retaining fingers, a compliant rain cradle, a snap electronics carrier and a
+click-in mounting plate. Print its ten-piece L4 kit first and follow
+[`docs/TOOLLESS_V4.md`](docs/TOOLLESS_V4.md).
+Its physical surfaces are intentionally unmarked; identification uses the STL
+filenames and assembly images.
+
+![Tool-less v4 assembly](assets/tool-less-v4-assembly-preview.png)
+
+V5 adds a single clean 210 x 200 mm tool-less backplane for every printed
+subassembly and the complete cable loom. The sky head, radiation shield, rain
+cradle and enclosure remain individually serviceable. See
+[`docs/UNIFIED_V5.md`](docs/UNIFIED_V5.md) and print its twelve-piece L5 fit kit
+before the full plate.
+
+> **V5.1 correction:** Do not print the original V5 A5, K5 or L5 files from
+> commit `88b9ef8`. The carrier pegs were connected but too short to retain O5,
+> and the post-export audit found dock interference, unsupported rain-cradle
+> regions, a mounting-slot clash and cable guides that did not retain the loom.
+> Commit `73a9ac6` replaces those files with supported carrier posts, verified
+> dock clearances, integrated rain pedestals, a relocated slot and flexible
+> cable-retaining jaws. Download or clone the latest branch and print L5 first.
+
+![V5 unified base](assets/unified-v5-assembly-preview.png)
+
 1. Print `stl/L_Fit_Kit_4_PIECES_PRINT_FIRST.stl`.
 2. Confirm both press-fit pairs before printing the full set.
 3. Print the remaining files in their supplied orientation with supports off.

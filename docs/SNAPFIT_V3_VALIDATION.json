@@ -1,0 +1,285 @@
+{
+  "revision": "snap-fit-cable-v3",
+  "criteria": "complete expected set, watertight, consistent winding, expected component count, positive volume, K1C envelope and Z=0",
+  "missing": [],
+  "unexpected": [],
+  "interface_checks": {
+    "lid_clearance_per_side_mm": {
+      "value": 0.35,
+      "allowed": [
+        0.25,
+        0.55
+      ],
+      "pass": true
+    },
+    "lid_hook_nominal_deflection_mm": {
+      "value": 0.4,
+      "allowed": [
+        0.2,
+        0.6
+      ],
+      "pass": true
+    },
+    "lid_window_width_clearance_mm": {
+      "value": 0.9,
+      "minimum": 0.6,
+      "pass": true
+    },
+    "sky_detent_diametral_interference_mm": {
+      "value": 0.15,
+      "allowed": [
+        0.05,
+        0.25
+      ],
+      "pass": true
+    },
+    "grommet_body_diametral_clearance_mm": {
+      "value": 0.45,
+      "allowed": [
+        0.25,
+        0.7
+      ],
+      "pass": true
+    },
+    "grommet_radial_retention_mm": {
+      "value": 1.5,
+      "minimum": 1.0,
+      "pass": true
+    },
+    "cable_clip_throat_mm": {
+      "value": 4.6,
+      "target_cable_od_mm": [
+        4.0,
+        5.5
+      ],
+      "pass": true
+    }
+  },
+  "results": [
+    {
+      "file": "A3_SnapFit_Electronics_Box.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 67131.21,
+      "print_dimensions_mm": [
+        120.0,
+        80.0,
+        42.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "B3_Release_Lid.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 33868.03,
+      "print_dimensions_mm": [
+        124.0,
+        84.0,
+        14.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "C_Shield_Base.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 11442.62,
+      "print_dimensions_mm": [
+        87.0,
+        70.0,
+        8.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "D_Shield_Louver_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 6665.38,
+      "print_dimensions_mm": [
+        70.0,
+        70.0,
+        9.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "E_Shield_Roof.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 27297.5,
+      "print_dimensions_mm": [
+        72.0,
+        72.0,
+        8.55
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "F_Shield_Rod_PRINT_3.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1072.82,
+      "print_dimensions_mm": [
+        67.4,
+        4.0,
+        4.45
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "G_SHT31_Sled.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 2500.27,
+      "print_dimensions_mm": [
+        34.0,
+        31.0,
+        6.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "H_Sky_Head_Top.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 43685.54,
+      "print_dimensions_mm": [
+        112.0,
+        50.0,
+        35.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "I3_SnapFit_Sky_Tray.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 10327.28,
+      "print_dimensions_mm": [
+        92.0,
+        50.0,
+        6.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "J_Rain_Plate_Mount.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 17849.38,
+      "print_dimensions_mm": [
+        26.0,
+        55.0,
+        64.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "K3_Cable_Managed_Mounting_Plate.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 66613.25,
+      "print_dimensions_mm": [
+        160.0,
+        100.0,
+        10.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "L3_Fit_Kit_6_PIECES_PRINT_FIRST.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 6,
+      "expected_components": 6,
+      "volume_mm3": 8885.44,
+      "print_dimensions_mm": [
+        124.5,
+        41.45,
+        17.8
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "M3_Cable_Clip_PRINT_6.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 1458.28,
+      "print_dimensions_mm": [
+        22.0,
+        16.0,
+        11.7
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    },
+    {
+      "file": "N3_Split_Grommet_PRINT_2.stl",
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "expected_components": 1,
+      "volume_mm3": 298.89,
+      "print_dimensions_mm": [
+        13.0,
+        12.95,
+        4.0
+      ],
+      "bed_contact_z_min_mm": 0.0,
+      "fits_k1c_220x220x250": true,
+      "pass": true
+    }
+  ],
+  "all_pass": true
+}
