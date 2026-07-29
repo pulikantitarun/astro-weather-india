@@ -1,6 +1,6 @@
 # Telegram weather reports
 
-AstroWeather v1.3 can send outbound Telegram reports directly from the ESP32.
+The current AstroWeather firmware can send outbound Telegram reports directly from the ESP32.
 No additional computer, cloud subscription or electronic component is needed.
 
 ## Create the bot

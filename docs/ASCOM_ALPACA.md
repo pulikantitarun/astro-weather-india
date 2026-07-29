@@ -1,6 +1,6 @@
 # ASCOM Alpaca setup
 
-AstroWeather v1.2 exposes ASCOM Alpaca directly from the ESP32. No Windows
+The current AstroWeather firmware exposes ASCOM Alpaca directly from the ESP32. No Windows
 driver executable, bridge computer or additional electronics are required.
 
 ## Devices
@@ -19,7 +19,7 @@ that board.
 ## Windows setup
 
 1. Put the ESP32 and Windows imaging computer on the same local network.
-2. Flash v1.2 firmware and confirm
+2. Flash the current firmware and confirm
    `http://astroweather.local/api/weather` opens.
 3. In an Alpaca-aware ASCOM chooser, discover devices and select the
    AstroWeather Observing Conditions and/or Safety Monitor device.
