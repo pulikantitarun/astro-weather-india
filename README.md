@@ -85,6 +85,14 @@ filenames and assembly images.
 
 ![Tool-less v4 assembly](assets/tool-less-v4-assembly-preview.png)
 
+V5 adds a single clean 210 x 200 mm tool-less backplane for every printed
+subassembly and the complete cable loom. The sky head, radiation shield, rain
+cradle and enclosure remain individually serviceable. See
+[`docs/UNIFIED_V5.md`](docs/UNIFIED_V5.md) and print its twelve-piece L5 fit kit
+before the full plate.
+
+![V5 unified base](assets/unified-v5-assembly-preview.png)
+
 1. Print `stl/L_Fit_Kit_4_PIECES_PRINT_FIRST.stl`.
 2. Confirm both press-fit pairs before printing the full set.
 3. Print the remaining files in their supplied orientation with supports off.
