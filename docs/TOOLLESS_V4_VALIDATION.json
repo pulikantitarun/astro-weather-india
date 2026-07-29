@@ -28,6 +28,29 @@
       ],
       "pass": true
     },
+    "carrier_support_plane_mm": {
+      "value": 8.0,
+      "required_internal_support_top_mm": 8.0,
+      "pass": true
+    },
+    "carrier_head_base_above_carrier_mm": {
+      "value": 0.1,
+      "allowed": [
+        0.05,
+        0.25
+      ],
+      "pass": true
+    },
+    "carrier_head_top_projection_mm": {
+      "value": 1.0,
+      "minimum": 0.8,
+      "pass": true
+    },
+    "carrier_base_thickness_mm": {
+      "value": 2.0,
+      "expected": 2.0,
+      "pass": true
+    },
     "mount_hook_overlap_mm": {
       "value": 0.4,
       "allowed": [

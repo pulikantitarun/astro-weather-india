@@ -30,6 +30,48 @@
       ],
       "pass": true
     },
+    "carrier_support_plane_mm": {
+      "value": 8.0,
+      "expected": 8.0,
+      "pass": true
+    },
+    "rain_rail_seating_lift_mm": {
+      "value": 1.6,
+      "expected": 1.6,
+      "pass": true
+    },
+    "rain_front_hook_clearance_mm": {
+      "value": 0.291,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "rain_rear_hook_clearance_mm": {
+      "value": 0.268,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "rain_nominal_clip_clearance_mm": {
+      "value": 0.3,
+      "allowed": [
+        0.2,
+        0.45
+      ],
+      "pass": true
+    },
+    "integrated_cable_clip_throat_mm": {
+      "value": 4.6,
+      "target_cable_od_mm": [
+        4.0,
+        5.5
+      ],
+      "pass": true
+    },
     "box_to_shield_plan_gap_mm": {
       "value": 10.0,
       "minimum": 8.0,
@@ -53,7 +95,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 67334.7,
+      "volume_mm3": 67913.32,
       "print_dimensions_mm": [
         120.0,
         82.2,
@@ -213,11 +255,11 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 165455.02,
+      "volume_mm3": 165263.66,
       "print_dimensions_mm": [
         210.0,
         200.0,
-        25.65
+        31.2
       ],
       "bed_contact_z_min_mm": 0.0,
       "fits_k1c_220x220x250": true,
@@ -229,7 +271,7 @@
       "winding_consistent": true,
       "components": 12,
       "expected_components": 12,
-      "volume_mm3": 16065.35,
+      "volume_mm3": 16046.31,
       "print_dimensions_mm": [
         124.5,
         90.0,

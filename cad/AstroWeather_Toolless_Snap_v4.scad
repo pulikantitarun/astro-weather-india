@@ -42,6 +42,10 @@ pcb_hook_overlap = 0.45;
 carrier_peg_shaft = 3.40;
 carrier_peg_head = 3.85;
 carrier_hole = 3.70;
+carrier_support_z = 8.00;
+carrier_base_t = 2.00;
+carrier_axial_clearance = 0.10;
+carrier_standoff_d = 6.50;
 mount_hook_overlap = 0.40;
 rain_board_width = 55.0;
 rain_board_length = 40.0;
@@ -55,18 +59,27 @@ module v4_mark(txt,p=[0,0,0],size=4,h=0.50) {
 
 module carrier_snap_stud() {
     union() {
-        cylinder(d=carrier_peg_shaft,h=4.2);
-        translate([0,0,4.2])
+        cylinder(d=carrier_peg_shaft,
+                 h=carrier_base_t+carrier_axial_clearance);
+        translate([0,0,carrier_base_t+carrier_axial_clearance])
             cylinder(d1=carrier_peg_head,d2=carrier_peg_shaft,h=0.9);
+    }
+}
+
+module carrier_mount_post() {
+    union() {
+        cylinder(d=carrier_standoff_d,h=carrier_support_z-3);
+        translate([0,0,carrier_support_z-3]) carrier_snap_stud();
     }
 }
 
 module A4_box() {
     union() {
         A3_box();
-        // Four carrier studs rise above the original internal rails.
+        // Four standoffs support O4 at Z=8 and place each retaining head
+        // completely above its 2 mm base.
         for (x=[25,95],y=[20,60])
-            translate([x,y,3]) carrier_snap_stud();
+            translate([x,y,3]) carrier_mount_post();
         // External catches for K4. Press K4's four tabs outward to release.
         for (x=[35,85]) {
             translate([x,-1.1,4]) cube([10,2.2,2.2]);

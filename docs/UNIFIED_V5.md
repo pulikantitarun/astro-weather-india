@@ -12,11 +12,28 @@ arrangement with one `K5_Single_Unified_Base_Plate.stl`.
 - A5 electronics enclosure on four push-out service tabs;
 - C5 radiation shield in a four-finger circular nest;
 - I5/H5 sky head in a four-clip rectangular nest;
-- J5 rain cradle at its working slope on two integrated rails;
+- J5 rain cradle at its working slope on four integrated support pads;
 - the complete loom in a rear channel with six snap-over bridges.
 
 All sensor assemblies remain individually removable. K5 is the only mounting
 backplane.
+
+## V5.1 engineering corrections
+
+The post-export assembly audit corrected the following before physical print:
+
+- all four O5 carrier posts now support the carrier at Z=8.0 mm and project
+  their retaining heads 1.0 mm above its 2 mm base;
+- the four A5 dock arms no longer intersect the enclosure catch ledges;
+- shield and rain-clip root gussets grow away from the captured parts;
+- the rain cradle seats on connected front pads and two 6 mm-wide rear
+  pedestals whose top plane matches the actual J5 convex-hull underside;
+- the rear-right mounting slot was moved clear of its rain pedestal;
+- the rear loom lane now uses flexible jaws with a 4.6 mm insertion throat.
+
+Final CGAL installed-state intersections are empty for the carrier, A5 dock,
+shield dock, sky dock and rain dock. Surface seating is tested separately from
+positive-volume collision.
 
 ## Critical mounting orientation
 
@@ -38,7 +55,7 @@ release without pliers, and survive ten cycles without whitening.
 
 ## Printing K5
 
-K5 is 210 x 200 x 25.65 mm. It fits a 220 x 220 x 250 mm K1C bed with 5 mm
+K5 is 210 x 200 x 31.2 mm. It fits a 220 x 220 x 250 mm K1C bed with 5 mm
 clearance on each X side and 10 mm on each Y side.
 
 - Confirm the build plate is actually 220 x 220 mm and correctly centered.
@@ -47,7 +64,7 @@ clearance on each X side and 10 mm on each Y side.
 - Use five walls, six bottom layers and 25% gyroid for the full backplane.
 - PETG is preferred; ASA is better outdoors if the printer is configured for it.
 - Clean the bed and verify first-layer calibration across the full area.
-- The angled rain rails and small snap hooks are designed to print support-free.
+- The rain pedestals, cable jaws and small snap hooks print support-free.
 
 ## Assembly order
 
@@ -59,7 +76,7 @@ clearance on each X side and 10 mm on each Y side.
 5. Install the sky PCBs in I5, route their loom, click H5 onto I5, then press
    the completed sky head into the rear-left rectangular dock.
 6. Rotate J5 from its print orientation into its working slope. Rest it on the
-   two rear-right rails and press each side lip beneath the four tall clips.
+   four rear-right support pads and press each side lip beneath the tall clips.
 7. Route all low-voltage wiring into the rear loom lane. Press it below each of
    the six bridges and leave drip/service loops before each sensor.
 8. Fit N5 grommets and close B5 only after all live sensor tests pass.

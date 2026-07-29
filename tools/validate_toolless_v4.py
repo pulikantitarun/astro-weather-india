@@ -53,6 +53,9 @@ def main() -> None:
     louver_socket = parameter("louver_socket")
     carrier_head = parameter("carrier_peg_head")
     carrier_hole = parameter("carrier_hole")
+    carrier_support = parameter("carrier_support_z")
+    carrier_base = parameter("carrier_base_t")
+    carrier_axial = parameter("carrier_axial_clearance")
     mount_overlap = parameter("mount_hook_overlap")
     pcb_overlap = parameter("pcb_hook_overlap")
     actual = {path.name for path in stl_root.glob("*.stl")}
@@ -110,6 +113,26 @@ def main() -> None:
             "value": round(carrier_head - carrier_hole, 3),
             "allowed": [0.05, 0.25],
             "pass": 0.05 <= carrier_head - carrier_hole <= 0.25,
+        },
+        "carrier_support_plane_mm": {
+            "value": carrier_support,
+            "required_internal_support_top_mm": 8.0,
+            "pass": abs(carrier_support - 8.0) <= 0.01,
+        },
+        "carrier_head_base_above_carrier_mm": {
+            "value": carrier_axial,
+            "allowed": [0.05, 0.25],
+            "pass": 0.05 <= carrier_axial <= 0.25,
+        },
+        "carrier_head_top_projection_mm": {
+            "value": round(carrier_axial + 0.9, 3),
+            "minimum": 0.8,
+            "pass": carrier_axial + 0.9 >= 0.8,
+        },
+        "carrier_base_thickness_mm": {
+            "value": carrier_base,
+            "expected": 2.0,
+            "pass": abs(carrier_base - 2.0) <= 0.01,
         },
         "mount_hook_overlap_mm": {
             "value": mount_overlap,

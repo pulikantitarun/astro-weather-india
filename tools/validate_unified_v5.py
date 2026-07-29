@@ -51,6 +51,14 @@ def main() -> None:
     base_y = parameter("base_y")
     capture_clearance = parameter("edge_capture_clearance")
     hook_overlap = parameter("edge_hook_overlap")
+    rain_rail_h = parameter("rain_rail_h")
+    rain_support_w = parameter("rain_support_w")
+    rain_clip_clearance = parameter("rain_clip_clearance")
+    rain_underhang = parameter("rain_hook_underhang")
+    rain_front_top = parameter("rain_front_clip_top_z")
+    rain_rear_top = parameter("rain_rear_clip_top_z")
+    cable_throat = parameter("cable_clip_throat")
+    carrier_support = parameter("carrier_support_z")
     actual = {path.name for path in stl_root.glob("*.stl")}
     missing = sorted(set(EXPECTED_FILES) - actual)
     unexpected = sorted(actual - set(EXPECTED_FILES))
@@ -111,6 +119,65 @@ def main() -> None:
             "value": hook_overlap,
             "allowed": [0.25, 0.55],
             "pass": 0.25 <= hook_overlap <= 0.55,
+        },
+        "carrier_support_plane_mm": {
+            "value": carrier_support,
+            "expected": 8.0,
+            "pass": abs(carrier_support - 8.0) <= 0.01,
+        },
+        "rain_rail_seating_lift_mm": {
+            "value": rain_rail_h,
+            "expected": 1.6,
+            "pass": abs(rain_rail_h - 1.6) <= 0.01,
+        },
+        "rain_pedestal_width_mm": {
+            "value": rain_support_w,
+            "minimum": 5.0,
+            "pass": rain_support_w >= 5.0,
+        },
+        "rain_front_hook_clearance_mm": {
+            "value": round(
+                (rain_front_top - rain_underhang)
+                - (
+                    4.0
+                    + rain_rail_h
+                    + 7.0
+                    + ((14.0 - 2.0) / 44.0) * 18.0
+                ),
+                3,
+            ),
+            "allowed": [0.20, 0.45],
+            "pass": 0.20
+            <= (rain_front_top - rain_underhang)
+            - (4.0 + rain_rail_h + 7.0 + ((14.0 - 2.0) / 44.0) * 18.0)
+            <= 0.45,
+        },
+        "rain_rear_hook_clearance_mm": {
+            "value": round(
+                (rain_rear_top - rain_underhang)
+                - (
+                    4.0
+                    + rain_rail_h
+                    + 7.0
+                    + ((44.0 - 2.0) / 44.0) * 18.0
+                ),
+                3,
+            ),
+            "allowed": [0.20, 0.45],
+            "pass": 0.20
+            <= (rain_rear_top - rain_underhang)
+            - (4.0 + rain_rail_h + 7.0 + ((44.0 - 2.0) / 44.0) * 18.0)
+            <= 0.45,
+        },
+        "rain_nominal_clip_clearance_mm": {
+            "value": rain_clip_clearance,
+            "allowed": [0.20, 0.45],
+            "pass": 0.20 <= rain_clip_clearance <= 0.45,
+        },
+        "integrated_cable_clip_throat_mm": {
+            "value": cable_throat,
+            "target_cable_od_mm": [4.0, 5.5],
+            "pass": 4.4 <= cable_throat <= 4.9,
         },
         "box_to_shield_plan_gap_mm": {"value": 10.0, "minimum": 8.0, "pass": True},
         "shield_to_rear_zone_gap_mm": {
