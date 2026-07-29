@@ -1,6 +1,6 @@
 # Web configuration portal
 
-Firmware v1.3 stores operating settings in the ESP32's non-volatile memory.
+The current firmware stores operating settings in the ESP32's non-volatile memory.
 Wi-Fi, Telegram and weather limits can therefore be changed from a phone or
 computer without editing source code or reflashing.
 
