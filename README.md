@@ -1,4 +1,4 @@
-# AstroWeather India — Non-Cellular V5.1
+# AstroWeather India — Non-Cellular V5.2
 
 The current non-cellular edition of an affordable, Wi-Fi-connected and almost
 entirely 3D-printable weather station for attended astrophotography.
@@ -10,7 +10,7 @@ entirely 3D-printable weather station for attended astrophotography.
 > controller. Never use the inexpensive rain plate as the sole input for an
 > unattended observatory roof.
 
-![Non-cellular V5.1 assembly](assets/unified-v5-assembly-preview.png)
+![Non-cellular V5.2 assembly](assets/unified-v5-assembly-preview.png)
 
 ## Current printable version
 
@@ -27,9 +27,16 @@ The original V5 export from commit `88b9ef8` must not be printed. V5.1 corrects
 short carrier posts, dock interference, incomplete rain support, a mounting-slot
 clash and open cable guides.
 
-Read the complete [V5.1 printing and assembly guide](docs/UNIFIED_V5.md).
+V5.2 also replaces H5, I5 and L5. In V5.1, H5's solid lower plate occupied the
+same space as I5's PCB rails and snap fingers, so the sky-head halves could not
+seat. V5.2 adds a raised protective rim, support pads, split snap pins and
+matched 3.90 mm sockets.
 
-![Non-cellular V5.1 interfaces](assets/unified-v5-interface-preview.png)
+Read the complete [V5.2 printing and assembly guide](docs/UNIFIED_V5.md).
+
+![Corrected V5.2 sky-head fit](assets/sky-head-v5-2-fit-preview.png)
+
+![Non-cellular V5.2 interfaces](assets/unified-v5-interface-preview.png)
 
 ## Capabilities
 

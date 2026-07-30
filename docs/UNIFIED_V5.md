@@ -1,4 +1,4 @@
-# V5 unified tool-less base
+# V5.2 unified tool-less base
 
 V5 keeps the clean, unmarked V4 snap parts and replaces the separate mounting
 arrangement with one `K5_Single_Unified_Base_Plate.stl`.
@@ -41,6 +41,26 @@ V5.1 corrects those issues as follows:
 Final CGAL installed-state intersections are empty for the carrier, A5 dock,
 shield dock, sky dock and rain dock. Surface seating is tested separately from
 positive-volume collision.
+
+## V5.2 sky-head correction
+
+V5.1 H5 and I5 cannot close correctly: the four-millimetre H5 plate intersects
+I5's raised PCB rails and snap fingers. The intended seated position produced
+approximately 1,045 mm³ of collision in the CGAL audit.
+
+V5.2 replaces H5, I5 and L5:
+
+- I5 has a 7 mm seating rim that raises H5 above every PCB feature;
+- four 7 mm support pads prevent rocking;
+- four longer split pins compress during insertion and recover above H5;
+- H5 sockets are 3.90 mm with 0.15 mm nominal diametral snap interference;
+- a front rim notch routes the sensor loom without pinching it;
+- the installed-state CGAL intersection is empty.
+
+Do not combine a V5.1 H5 or I5 with the corrected counterpart. Reprint all
+three replacement files so the socket, pin and fit coupon remain matched.
+
+![Corrected V5.2 sky-head fit](../assets/sky-head-v5-2-fit-preview.png)
 
 ## Critical mounting orientation
 

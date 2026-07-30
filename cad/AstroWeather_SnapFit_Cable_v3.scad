@@ -38,8 +38,12 @@ snap_hook = 0.75;
 snap_window_clearance = 0.45;
 
 sky_peg_shaft_d = 3.45;
-sky_peg_head_d = 3.90;
-sky_socket_d = 3.75; // Matches the H v2 socket.
+sky_peg_head_d = 4.05;
+sky_peg_shaft_h = 4.25;
+sky_peg_head_h = 0.90;
+sky_socket_d = 3.90; // Matches the enlarged H socket.
+sky_top_seat_z = 7.0;
+sky_peg_base_z = 6.80;
 board_clearance = 0.50;
 
 cable_entry_d = 10.0;
@@ -200,20 +204,42 @@ module B3_lid() {
 }
 
 module sky_snap_peg() {
-    union() {
-        cylinder(d=sky_peg_shaft_d,h=3.3);
-        translate([0,0,3.3])
-            cylinder(d1=sky_peg_head_d,d2=sky_peg_shaft_d,h=0.9);
+    // The split lets the two halves compress through H5, then recover above
+    // its four-millimetre plate. The unsplit lower section remains robust.
+    difference() {
+        union() {
+            cylinder(d=sky_peg_shaft_d,h=sky_peg_shaft_h);
+            translate([0,0,sky_peg_shaft_h])
+                cylinder(d1=sky_peg_head_d,d2=sky_peg_shaft_d,h=sky_peg_head_h);
+        }
+        translate([-0.3,-3,1.25]) cube([0.6,6,4.0]);
     }
+}
+
+module sky_tray_rim() {
+    // A five-millimetre upward rim seats H5 above the PCB rails/fingers instead
+    // of forcing its solid plate through them. The front notch passes the loom.
+    difference() {
+        translate([0,0,1.9]) rrbox([92,50,5.1],4);
+        translate([2,2,1.8]) rrbox([88,46,5.4],2.4);
+        translate([41,-0.1,2.4]) cube([10,2.3,4.8]);
+    }
+}
+
+module sky_snap_mount() {
+    // The pad supports H5; the pin overlaps it by 0.2 mm for one solid mesh.
+    translate([0,0,2]) cylinder(d=7,h=5);
+    translate([0,0,sky_peg_base_z]) sky_snap_peg();
 }
 
 module I3_sky_tray() {
     union() {
         rrbox([92,50,2],4);
+        sky_tray_rim();
         pocket_rails([27,25],[22,18]);
         pocket_rails([66,25],[20,18]);
         for (x=[7,85], y=[7,43])
-            translate([x,y,1.8]) sky_snap_peg();
+            translate([x,y,0]) sky_snap_mount();
         // Cable tie bridge between the two sensor pockets.
         translate([43,19,2])
             difference() {

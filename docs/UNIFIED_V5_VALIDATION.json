@@ -1,5 +1,5 @@
 {
-  "revision": "unified-base-v5",
+  "revision": "unified-base-v5.2",
   "criteria": "complete expected set, watertight, consistent winding, expected component count, positive volume, K1C/K2 envelope and Z=0",
   "missing": [],
   "unexpected": [],
@@ -35,9 +35,40 @@
       "expected": 8.0,
       "pass": true
     },
+    "sky_top_seating_plane_mm": {
+      "value": 7.0,
+      "expected": 7.0,
+      "pass": true
+    },
+    "sky_socket_diameter_match_mm": {
+      "declared": 3.9,
+      "actual_h5": 3.9,
+      "pass": true
+    },
+    "sky_snap_diametral_interference_mm": {
+      "value": 0.15,
+      "allowed": [
+        0.1,
+        0.25
+      ],
+      "pass": true
+    },
+    "sky_snap_shoulder_above_h5_mm": {
+      "value": 0.05,
+      "allowed": [
+        0.03,
+        0.15
+      ],
+      "pass": true
+    },
     "rain_rail_seating_lift_mm": {
       "value": 1.6,
       "expected": 1.6,
+      "pass": true
+    },
+    "rain_pedestal_width_mm": {
+      "value": 6.0,
+      "minimum": 5.0,
       "pass": true
     },
     "rain_front_hook_clearance_mm": {
@@ -87,6 +118,14 @@
       "minimum": 10.0,
       "pass": true
     }
+  },
+  "installed_state_cgal_audits": {
+    "carrier": "empty intersection",
+    "box_dock": "empty intersection",
+    "shield_dock": "empty intersection",
+    "sky_dock": "empty intersection",
+    "sky_head_mate": "empty intersection",
+    "rain_dock": "empty intersection"
   },
   "results": [
     {
@@ -207,7 +246,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 43655.01,
+      "volume_mm3": 43640.62,
       "print_dimensions_mm": [
         112.0,
         50.0,
@@ -223,11 +262,11 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 10382.22,
+      "volume_mm3": 13778.79,
       "print_dimensions_mm": [
         92.0,
         50.0,
-        7.0
+        11.95
       ],
       "bed_contact_z_min_mm": 0.0,
       "fits_k1c_220x220x250": true,
@@ -255,7 +294,7 @@
       "winding_consistent": true,
       "components": 1,
       "expected_components": 1,
-      "volume_mm3": 165263.66,
+      "volume_mm3": 165800.46,
       "print_dimensions_mm": [
         210.0,
         200.0,
@@ -271,7 +310,7 @@
       "winding_consistent": true,
       "components": 12,
       "expected_components": 12,
-      "volume_mm3": 16046.31,
+      "volume_mm3": 16043.79,
       "print_dimensions_mm": [
         124.5,
         90.0,

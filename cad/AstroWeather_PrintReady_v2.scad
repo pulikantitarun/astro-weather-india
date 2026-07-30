@@ -28,7 +28,10 @@ fit = 0.35;
 wall = 2.4;
 lid_clearance_per_side = 0.30;
 peg_d = 3.60;
-peg_clearance_d = 0.15;
+// H5 socket is deliberately larger than the legacy friction socket. The
+// current split snap pin provides retention without relying on an undersized
+// printed hole.
+peg_clearance_d = 0.30;
 board_clearance = 0.50;
 
 module rr2d(s=[20,20],r=3) {

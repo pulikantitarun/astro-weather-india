@@ -50,6 +50,7 @@ cable_left_tip_y = 3.20;
 cable_tip_t = 1.50;
 cable_right_tip_y = cable_left_tip_y+cable_tip_t+cable_clip_throat;
 carrier_support_z = 8.00;
+sky_top_seat_z = 7.00;
 audit_gap = 0.02;
 
 box_origin = [5,5];
@@ -338,6 +339,18 @@ module audit_rain_dock_collision() {
     }
 }
 
+module audit_sky_head_mate_collision() {
+    intersection() {
+        I4_sky_tray();
+        translate([0,0,sky_top_seat_z+audit_gap]) H4_sky_top();
+    }
+}
+
+module sky_head_assembled_preview() {
+    color("orange") I4_sky_tray();
+    color("darkorange") translate([0,0,sky_top_seat_z]) H4_sky_top();
+}
+
 if (part_id==1) A4_box();
 else if (part_id==2) B4_lid();
 else if (part_id==3) C4_shield_base();
@@ -359,5 +372,7 @@ else if (part_id==83) audit_shield_dock_collision();
 else if (part_id==84) audit_sky_dock_collision();
 else if (part_id==85) audit_rain_dock_collision();
 else if (part_id==86) rain_installed();
+else if (part_id==87) audit_sky_head_mate_collision();
+else if (part_id==88) sky_head_assembled_preview();
 else if (part_id==91) interface_preview_v5();
 else assembly_preview_v5();
