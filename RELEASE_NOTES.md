@@ -1,4 +1,4 @@
-# Non-Cellular V5.1
+# Non-Cellular V5.2
 
 This repository exposes one current non-cellular edition.
 
@@ -12,10 +12,14 @@ This repository exposes one current non-cellular edition.
 - relocated mounting slot clear of the rain support;
 - flexible 4.6 mm cable-retaining jaws;
 - twelve-piece fit kit;
+- corrected H5/I5 sky-head interface with a raised protective rim, support
+  pads, compliant split pins and matched sockets;
 - editable OpenSCAD and validated STL files;
 - Wi-Fi dashboard, Telegram, JSON, ASCOM Alpaca and INDI support.
 
-Users with original V5 files from commit `88b9ef8` must replace A5, K5 and L5.
+Users with original V5 files from commit `88b9ef8` must replace A5 and K5.
+Everyone with V5.1 or earlier must replace H5, I5 and L5 before assembling the
+sky head.
 
 Physical fit, sealing, calibration and unattended safety remain field tests.
 The project is licensed under GNU AGPL-3.0-or-later.

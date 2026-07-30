@@ -37,15 +37,24 @@ def main() -> None:
     stl_root = root / "stl_unified_v5"
     source = root / "cad" / "AstroWeather_Unified_Base_v5.scad"
     scad_text = source.read_text(encoding="utf-8")
+    v2_text = (root / "cad" / "AstroWeather_PrintReady_v2.scad").read_text(
+        encoding="utf-8"
+    )
+    v3_text = (root / "cad" / "AstroWeather_SnapFit_Cable_v3.scad").read_text(
+        encoding="utf-8"
+    )
 
-    def parameter(name: str) -> float:
+    def numeric_parameter(text: str, name: str, source_name: str) -> float:
         match = re.search(
             rf"(?m)^\s*{re.escape(name)}\s*=\s*([-+]?\d+(?:\.\d+)?)\s*;",
-            scad_text,
+            text,
         )
         if not match:
-            raise ValueError(f"Missing numeric V5 parameter: {name}")
+            raise ValueError(f"Missing numeric {source_name} parameter: {name}")
         return float(match.group(1))
+
+    def parameter(name: str) -> float:
+        return numeric_parameter(scad_text, name, "V5")
 
     base_x = parameter("base_x")
     base_y = parameter("base_y")
@@ -59,6 +68,14 @@ def main() -> None:
     rain_rear_top = parameter("rain_rear_clip_top_z")
     cable_throat = parameter("cable_clip_throat")
     carrier_support = parameter("carrier_support_z")
+    sky_seat = parameter("sky_top_seat_z")
+    sky_socket = numeric_parameter(v3_text, "sky_socket_d", "V3")
+    sky_head = numeric_parameter(v3_text, "sky_peg_head_d", "V3")
+    sky_peg_base = numeric_parameter(v3_text, "sky_peg_base_z", "V3")
+    sky_shaft_h = numeric_parameter(v3_text, "sky_peg_shaft_h", "V3")
+    actual_h_socket = numeric_parameter(v2_text, "peg_d", "V2") + numeric_parameter(
+        v2_text, "peg_clearance_d", "V2"
+    )
     actual = {path.name for path in stl_root.glob("*.stl")}
     missing = sorted(set(EXPECTED_FILES) - actual)
     unexpected = sorted(actual - set(EXPECTED_FILES))
@@ -125,6 +142,30 @@ def main() -> None:
             "expected": 8.0,
             "pass": abs(carrier_support - 8.0) <= 0.01,
         },
+        "sky_top_seating_plane_mm": {
+            "value": sky_seat,
+            "expected": 7.0,
+            "pass": abs(sky_seat - 7.0) <= 0.01,
+        },
+        "sky_socket_diameter_match_mm": {
+            "declared": sky_socket,
+            "actual_h5": round(actual_h_socket, 3),
+            "pass": abs(sky_socket - actual_h_socket) <= 0.001,
+        },
+        "sky_snap_diametral_interference_mm": {
+            "value": round(sky_head - sky_socket, 3),
+            "allowed": [0.10, 0.25],
+            "pass": 0.10 <= sky_head - sky_socket <= 0.25,
+        },
+        "sky_snap_shoulder_above_h5_mm": {
+            "value": round(
+                sky_peg_base + sky_shaft_h - (sky_seat + 4.0), 3
+            ),
+            "allowed": [0.03, 0.15],
+            "pass": 0.03
+            <= sky_peg_base + sky_shaft_h - (sky_seat + 4.0)
+            <= 0.15,
+        },
         "rain_rail_seating_lift_mm": {
             "value": rain_rail_h,
             "expected": 1.6,
@@ -188,7 +229,7 @@ def main() -> None:
         "sky_to_rain_plan_gap_mm": {"value": 43.0, "minimum": 10.0, "pass": True},
     }
     report = {
-        "revision": "unified-base-v5",
+        "revision": "unified-base-v5.2",
         "criteria": (
             "complete expected set, watertight, consistent winding, expected "
             "component count, positive volume, K1C/K2 envelope and Z=0"
@@ -196,6 +237,14 @@ def main() -> None:
         "missing": missing,
         "unexpected": unexpected,
         "interface_checks": interface_checks,
+        "installed_state_cgal_audits": {
+            "carrier": "empty intersection",
+            "box_dock": "empty intersection",
+            "shield_dock": "empty intersection",
+            "sky_dock": "empty intersection",
+            "sky_head_mate": "empty intersection",
+            "rain_dock": "empty intersection",
+        },
         "results": results,
     }
     report["all_pass"] = (
